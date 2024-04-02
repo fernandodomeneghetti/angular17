@@ -366,3 +366,192 @@ const routes: Routes = [
 
 export class AppRoutingModule { }
 ```
+
+No login.component.html iremos criar duas divs, onde a primeira deverá apresentar uma image e a segundo onde teremos um form para que o usuário informe seu nome, note que eu já configurei no input o "two way data binding", porém para usar o ngModel foi necessário no app.mdoule.ts fazer o import no FormsModel, ficando
+
+#### app.module.ts
+
+```javascript
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { ButtonComponent } from './components/button/button.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { LoginComponent } from './pages/login/login.component';
+import { FormsModule } from '@angular/forms'; //Adicionar para funcionar o ngModel
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    ButtonComponent,
+    LoginComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule //Adicionar para funcionar o ngModel
+  ],
+  providers: [
+    provideAnimationsAsync()
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+#### login.compoent.html 
+
+```html
+<div class="area-login-background d-none d-md-block"></div>
+
+<div class="area-form">
+    <form>
+        <h1 class="titulo">CRUD MATÉRIAS</h1>
+        <h2 class="subtitulo">Melhor site de controle de notas</h2>
+
+        <input [(ngModel)]="userName" [ngModelOptions]="{standalone: true}" class="input-form" type="text" placeholder="Digite seu nome">
+
+        <app-button textButton="Acessar" size="100" (click)="login()"></app-button>
+    </form>
+
+    <p class="footer">© 2024 | Desenvolvido por Fernando Domeneghetti</p>
+</div>
+```
+
+Você precisa agora no login.component.ts adicionar a variável userName que estamos usando no input
+
+```javascript
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.scss'
+})
+export class LoginComponent {
+  userName: string = '';
+}
+```
+
+Por fim, vamos adicionar um estilo a nossa página, para isso adicione o conteúdo a seguir dentro do arquivo login.component.scss
+
+```css
+.area-login-background {
+    height: 100%;
+    width: 55%;
+    display: block;
+    float: left;
+    background-image: url('../../../assets/background-login.jpeg');
+    background-color: var(--primary-color);
+    background-size: 100% auto;
+    background-position: center top;
+    background-repeat: repeat-y
+}
+
+.area-form {
+    height: 100%;
+    width:45%;
+    float: left;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center; // Add this line
+    flex-wrap: nowrap;
+}
+
+@media only screen and (max-width: 767px) {
+    .area-form { width: 100%; }
+}
+
+.titulo {
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 7px;
+    color: var(--primary-color);
+    padding: 0;
+    margin-bottom: 6px;
+}
+
+.subtitulo {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--gray-color);
+    margin: 0px 0px 30px 0px;
+    padding: 0;
+    text-align: center;
+}
+
+.input-form {
+    outline: none;
+    padding: 8px 10px;
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #00000000; // 6x 0 é a cor, porém quando se usa 8x 0 é para deixar transparente
+    margin-bottom: 32px;
+    transform: 0.3s linear all;
+    box-shadow: inset 1px 1px 2px #babecc80, inset -1px -1px 2px #d8d8d8b0; // inset serve para sombra interna
+    &:focus {
+        border: 1px solid var(--primary-color);
+    }
+}
+
+.footer {
+    position: absolute;
+    bottom: 4px;
+    color: var(--primary-color);
+    font-size: 10px;
+}
+```
+
+### Componente Home
+
+No terminal, navegar até a pasta raiz do projeto em seguida rodar o comando
+
+> ng g c components/home
+
+Após rodar o comando, note que o componente Home foi criado e injetado no app.module.ts
+
+#### app-routing.module.ts
+Vamos adicionar o componente no path da mesma forma que fizemos para o LoginComponent:
+
+```javascript
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './pages/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+
+const routes: Routes = [
+  { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent } //adicionado login no path
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+```
+
+
+#### login.component.ts
+No nosso arquivo login.component.ts, vamos configurar através do router para navegar para a /home sempre que a função login for executada.
+
+```javascript
+export class LoginComponent {
+  userName: string = '';
+
+  // adicionar o router para navegar entre as páginas > ir para home
+  constructor(private router: Router) {
+
+  }
+
+  login() {
+    sessionStorage.setItem('user', this.userName);
+    this.router.navigate(['home']);
+  }
+}
+```
