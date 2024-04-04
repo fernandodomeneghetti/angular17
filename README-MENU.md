@@ -75,10 +75,10 @@ Basta pesquisar o tema e ele irá mostrar várias opções relacionadas ao tema 
             <img src="../../../assets/angular.png" width="40px">
             <span class="logo">Crud Matérias</span>
         </li>
-        <li routerLink="/home"><mat-icon>home</mat-icon>Home</li>
-        <li routerLink="/classes"><mat-icon>school</mat-icon>Cadastrar Matérias</li>
+        <li ><mat-icon>home</mat-icon>Home</li>
+        <li ><mat-icon>school</mat-icon>Cadastrar Matérias</li>
         <a href="" target="_blank"><li><mat-icon>description</mat-icon>Angular</li></a>
-        <li routerLink="/login"><mat-icon>logout</mat-icon>Sair</li>
+        <li ><mat-icon>logout</mat-icon>Sair</li>
     </ul>
 </nav>
 
@@ -185,3 +185,23 @@ Vamos deixar o `Sair` no final da página e ajustar o tamanho dos icones, no fin
 ```
 
 ![menu-3](./img/menu-3.png)
+
+
+## Adicionando routerLink no Menu
+
+
+```html
+<nav class="sidemenu">
+    <ul>
+        <li>
+            <img src="../../../assets/angular.png" width="40px">
+            <span class="logo">Crud Matérias</span>
+        </li>
+        <li routerLink="/home"><mat-icon>home</mat-icon>Home</li>
+        <li routerLink="/classes"><mat-icon>school</mat-icon>Cadastrar Matérias</li>
+        <a href="" target="_blank"><li><mat-icon>description</mat-icon>Angular</li></a>
+        <li routerLink="/login"><mat-icon>logout</mat-icon>Sair</li>
+    </ul>
+</nav>
+
+```
