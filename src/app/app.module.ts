@@ -8,18 +8,26 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { LoginComponent } from './pages/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
+import { MenuComponent } from './components/menu/menu.component';
+
+// Angular Material
+import { MatIconModule } from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
     AppComponent,
     ButtonComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule //Adicionar para funcionar o ngModel
+    FormsModule,
+    MatIconModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     provideAnimationsAsync()
