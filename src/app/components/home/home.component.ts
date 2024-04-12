@@ -12,4 +12,9 @@ export class HomeComponent {
   mode: ProgressSpinnerMode = 'determinate';
   value: number = 75;
   noteValue: number = 80;
+  userName: string | null;
+
+  ngOnInit() {
+    this.userName = sessionStorage.getItem('user');
+  }
 }
