@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "crud-materias-c0dc3": {
+      "hosting": {
+        "step-by-step": [
+          "crud-materias-c0dc3"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "crud-materias-c0dc3"
+  }
+}
