@@ -14,7 +14,7 @@ export class MateriasService {
   constructor(private dataBaseStore: AngularFirestore) { }
 
   getAll() {
-    return this.dataBaseStore.collection('materias', materia => materia.orderBy('name')).valueChanges({idFiled: 'firebaseId'}) as Observable<any[]>;
+    return this.dataBaseStore.collection('materias', materia => materia.orderBy('name')).valueChanges({idField: 'firebaseId'}) as Observable<any[]>;
   }
 
   create(materia: Materia) {

@@ -4,6 +4,6 @@ export interface Materia {
     semestre: number,
     curso: string,
     professor: string,
-    nota: number
+    nota?: number
 
 }
