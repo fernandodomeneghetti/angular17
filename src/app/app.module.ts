@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { ButtonComponent } from './components/button/button.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { LoginComponent } from './pages/login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { CrudComponent } from './pages/crud/crud.component';
@@ -30,6 +30,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 // Angular
 import { AngularFireModule } from '@angular/fire/compat';
 import { ModalViewMateriaComponent } from './pages/crud/modal-view-materia/modal-view-materia.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ModalFormMateriaComponent } from './pages/crud/modal-form-materia/modal-form-materia.component';
 
 
 @NgModule({
@@ -40,12 +42,15 @@ import { ModalViewMateriaComponent } from './pages/crud/modal-view-materia/modal
     HomeComponent,
     MenuComponent,
     CrudComponent,
-    ModalViewMateriaComponent
+    ModalViewMateriaComponent,
+    ModalFormMateriaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
+    
     MatIconModule,
     MatProgressSpinnerModule,
     // provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
@@ -57,7 +62,9 @@ import { ModalViewMateriaComponent } from './pages/crud/modal-view-materia/modal
     MatPaginatorModule,
     MatTableModule, 
     MatSortModule,
-    MatDialogModule
+    MatDialogModule,
+
+    HttpClientModule
   ],
   providers: [
     provideAnimationsAsync()

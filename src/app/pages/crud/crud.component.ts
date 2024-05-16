@@ -6,6 +6,7 @@ import { Materia } from '../../interfaces/Materia';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalViewMateriaComponent } from './modal-view-materia/modal-view-materia.component';
+import { ModalFormMateriaComponent } from './modal-form-materia/modal-form-materia.component';
 
 @Component({
   selector: 'app-crud',
@@ -27,6 +28,16 @@ export class CrudComponent {
   }
 
   ngOnInit() {
+      const livros = this.materiaService.getByFetch().subscribe({
+        next: (response: any) => {
+          console.log('Lista de livros no json-server', response);
+        },
+        error: (error: any) => {
+          console.error('Erro ao buscar lista de livros', error);
+        }
+      
+      });
+      console.log('livros: ', livros);
      this.getListMateria();
   }
 
@@ -75,5 +86,33 @@ export class CrudComponent {
       height: '350px',
       data: materia
     })
+  }
+
+  openModalAddMateria() {
+    this.dialog.open(ModalFormMateriaComponent, {
+      width: '700px',
+      height: '410px',
+
+    }).afterClosed().subscribe(() => this.getListMateria());
+  }
+
+  openModalEditMateria(materia: Materia) {
+    this.dialog.open(ModalFormMateriaComponent, {
+      width: '700px',
+      height: '410px',
+      data: materia
+    }).afterClosed().subscribe(() => this.getListMateria());
+  }
+
+  deleteMateria(materiaId: string) {
+    this.materiaService.delete(materiaId)
+    .then((response: any) => {
+      window.alert('Materia deletada com sucesso');
+      this.getListMateria();
+    })
+    .catch((error: any) => {
+      window.alert('Erro ao deletar materia');
+      console.log('Erro ao deletar materia:', error)
+    });
   }
 }

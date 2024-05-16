@@ -10,7 +10,7 @@
 
     <div class="row">
         <div class="col-12">
-            <app-button class="float-end mt-2" textButton="+ Cadastrar"></app-button>
+            <app-button class="float-end mt-2" textButton="+ Cadastrar" (click)="openModalAddMateria()" ></app-button>
 
             <mat-form-field>
                 <mat-label>Busca por Matérias</mat-label>
@@ -62,8 +62,8 @@
                     <th class="th-table" mat-header-cell *matHeaderCellDef mat-sort-header></th>
                     <td class="td-table" mat-cell *matCellDef="let materia">
                         <mat-icon class="icone-tabela" (click)="openModalViewMateria(materia)">visibility</mat-icon>
-                        <mat-icon class="icone-tabela">edit</mat-icon>
-                        <mat-icon class="icone-tabela">delete</mat-icon>
+                        <mat-icon class="icone-tabela" (click)="openModalEditMateria(materia)">edit</mat-icon>
+                        <mat-icon class="icone-tabela" (click)="deleteMateria(materia.firebaseId)">delete</mat-icon>
                     </td>
                 </ng-container>
             

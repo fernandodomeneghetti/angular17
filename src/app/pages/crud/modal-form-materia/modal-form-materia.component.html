@@ -1,0 +1,59 @@
+<div class="container-fluid p-3">
+    <mat-icon class="float-end hover" (click)="closeModal()">close</mat-icon>
+
+    <h1 class="titulo">Formulário de matéria</h1>
+    <h2 class="subtitulo">Preencha o formulário para salvar a matéria</h2>
+
+    <form class="row" [formGroup]="formMateria">
+        <div class="col-12 col-md-6 mb-2">
+            <mat-form-field class="example-full-width w-100">
+                <mat-label>Matéria</mat-label>
+                <input type="text" matInput formControlName="name" placeholder="Digite nome da matéria">
+                @if (formMateria.controls['name'].invalid) {
+                  <mat-error>Por favor, preencha o nome da matéria</mat-error>
+                }
+            </mat-form-field>
+        </div>
+        <div class="col-12 col-md-6 mb-2">
+            <mat-form-field class="example-full-width w-100">
+                <mat-label>Semestre</mat-label>
+                <input type="number" matInput formControlName="semestre" placeholder="Digite o semestre">
+                @if (formMateria.controls['semestre'].invalid) {
+                  <mat-error>Por favor, preencha o semestre</mat-error>
+                }
+            </mat-form-field>
+        </div>
+        <div class="col-12 col-md-6 mb-2">
+            <mat-form-field class="example-full-width w-100">
+                <mat-label>Curso</mat-label>
+                <input type="text" matInput formControlName="curso" placeholder="Digite o nome do curso">
+                @if (formMateria.controls['curso'].invalid) {
+                  <mat-error>Por favor, preencha o curso</mat-error>
+                }
+            </mat-form-field>
+        </div>
+        <div class="col-12 col-md-6 mb-2">
+            <mat-form-field class="example-full-width w-100">
+                <mat-label>Professor</mat-label>
+                <input type="text" matInput formControlName="professor" placeholder="Digite o nome do professor">
+                @if (formMateria.controls['professor'].invalid) {
+                  <mat-error>Por favor, preencha o nome do professor</mat-error>
+                }
+            </mat-form-field>
+        </div>
+
+        <div class="col-12 col-md-6 mb-2">
+            <mat-form-field class="example-full-width w-100">
+                <mat-label>Nota</mat-label>
+                <input type="number" matInput formControlName="nota" placeholder="Digite sua nota">
+                @if (formMateria.controls['nota'].invalid) {
+                  <mat-error>Por favor, preencha a nota</mat-error>
+                }
+            </mat-form-field>
+        </div>
+
+        <div class="col-12">
+            <button class="botao-primario float-end" [disabled]="!formMateria.valid" (click)="save()">Salvar Matéria</button>
+        </div>
+    </form>
+</div>
