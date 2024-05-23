@@ -17,7 +17,8 @@ export class MateriasService {
   constructor(private dataBaseStore: AngularFirestore, private http: HttpClient) { }
 
   getAll() {
-    return this.dataBaseStore.collection('materias', materia => materia.orderBy('name')).valueChanges({idField: 'firebaseId'}) as Observable<any[]>;
+    return this.http.get(`${ this.apiURL }/materias`, {responseType:'json'});
+    // return this.dataBaseStore.collection('materias', materia => materia.orderBy('name')).valueChanges({idField: 'firebaseId'}) as Observable<any[]>;
   }
 
   create(materia: Materia) {
@@ -33,6 +34,6 @@ export class MateriasService {
   }
 
   getByFetch() {
-    return this.http.get(`${ this.apiURL }/livros`, {responseType:'json'});
+    return this.http.get(`${ this.apiURL }/materias`, {responseType:'json'});
   }
 }

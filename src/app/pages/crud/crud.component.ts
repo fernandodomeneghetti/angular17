@@ -28,17 +28,19 @@ export class CrudComponent {
   }
 
   ngOnInit() {
-      const livros = this.materiaService.getByFetch().subscribe({
-        next: (response: any) => {
-          console.log('Lista de livros no json-server', response);
-        },
-        error: (error: any) => {
-          console.error('Erro ao buscar lista de livros', error);
-        }
+    // usando api
+      // const livros = this.materiaService.getByFetch().subscribe({
+      //   next: (response: any) => {
+      //     console.log('Lista de livros no json-server', response);
+      //   },
+      //   error: (error: any) => {
+      //     console.error('Erro ao buscar lista de livros', error);
+      //   }
       
-      });
-      console.log('livros: ', livros);
-     this.getListMateria();
+      // });
+      // console.log('livros: ', livros);
+
+      this.getListMateria();
   }
 
 

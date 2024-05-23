@@ -1,0 +1,30 @@
+{
+    "materias": [
+      {
+        "firebaseId": "4fd2",
+        "name": "Desenvolvimento de Framework I",
+        "semestre": 7,
+        "curso": "Engenharia de Software",
+        "professor": "Beltrano",
+        "nota": 10
+      },
+      {
+        "firebaseId": "ee97",
+        "name": "Matematica",
+        "semestre": 7,
+        "curso": "Engenharia de Software",
+        "professor": "Ciclano",
+        "nota": 10
+      },
+      {
+        "firebaseId": "eb13",
+        "name": "Portegues",
+        "semestre": 7,
+        "curso": "Engenharia de Software",
+        "professor": "Fulano",
+        "nota": 10
+      }
+    ]
+  }
+  
+  
